@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import './index.css';
 
@@ -33,6 +34,19 @@ function Tweet({ tweet }) {
       </div>
     )
 }
+Tweet.propTypes = {
+  tweet: PropTypes.shape({
+    author: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      handle: PropTypes.string.isRequired,
+    }).isRequired,
+    gravatar: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    retweets: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
+  }).isRequired,
+}
 
 function Avatar({ hash }) {
   var url = `https://www.gravatar.com/avatar/${hash}`
@@ -42,6 +56,9 @@ function Avatar({ hash }) {
         className="avatar"
         alt="avatar" />
     )
+}
+Avatar.propTypes = {
+  hash: PropTypes.string.isRequired,
 }
 
 function Message({ text }) {
